@@ -2,14 +2,28 @@
 const COHORT = "2308-ACC-PT-WEB-PT-A";
 const API_URL = `https://fsa-crud-2aa9294fe819.herokuapp.com/api/${COHORT}/events`;
 
+// Initial state
 const state = {
   parties: [],
 };
 
+// References
 const partiesList = document.querySelector("#parties");
+const popUpEl = document.querySelector(".popUp");
+const partyIdEl = document.querySelector(".partyID");
+const updPartyForm = document.querySelector("#updParty")
+const overlay = document.getElementById('overlay');
 
+//Add event listener so that a party is added when the form is submitted
 const addPartyForm = document.querySelector("#addParty");
 addPartyForm.addEventListener("submit", addParty);
+
+// pop-Up and overlay will be hidden when closeButton is clicked
+const closeButton = document.querySelector("#closeButton"); 
+closeButton.addEventListener('click', () => {
+  popUpEl.classList.remove('active')
+  overlay.classList.remove('active')
+});
 
 /**
  * Sync state with the API and rerender 
@@ -18,6 +32,8 @@ async function render() {
   await getParties();
   renderParties();
 }
+
+// Display the initial state
 render();
 
 /**
@@ -59,6 +75,62 @@ async function addParty(event) {
       }
 }
 
+// Add event listener so that party is updated when this form is submitted
+updPartyForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  try{
+    // Updated party 
+    updateParty(partyIdEl.value,
+                updPartyForm.name.value,
+                updPartyForm.description.value,
+                new Date(updPartyForm.date.value).toISOString(),
+                updPartyForm.location.value);
+
+    // Refresh the list of parties   
+    render();
+
+    // Clear the input fields of updPartyForm
+    updPartyForm.name.value = ''
+    updPartyForm.description.value = ''
+    updPartyForm.date.value = ''
+    updPartyForm.location.value = ''
+
+    // Hide the pop-up and overly 
+    popUpEl.classList.remove('active')
+    overlay.classList.remove('active')
+
+  } catch (error) {
+    console.error(error);
+  }
+})
+
+/**
+ * Ask API to update an existing party and rerender                
+ * @param {number} id id of the party to update
+ * @param {string} name new name of party
+ * @param {string} description new description for party
+ * @param {string} date new date-time of the party
+ * @param {string} location new location of the party
+ */
+async function updateParty(id, name, description, date, location) {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, description, date, location }),
+    });
+    const json = await response.json();
+
+    if (json.error) {
+      throw new Error(json.message);
+    }
+
+    render();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 /**
  * Ask API to delete a party and rerender
  * @param {number} id id of party to delete
@@ -97,12 +169,23 @@ function renderParties() {
       <p>${party.location}</p>
     `;
 
+    // Add the deleteButton feature
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete Party";
     partyCard.append(deleteButton);
-
-    // Explain how closure allows us to access the correct party id
     deleteButton.addEventListener("click", () => deleteParty(party.id));
+
+    // Add the editButton feature
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit Party";
+    partyCard.append(editButton);
+        // Add event listener so that the partyIdEl value is updated and pop-Up and overlay 
+        // are shown when this button is clicked
+    editButton.addEventListener("click", () => {
+      partyIdEl.value = (party.id);
+      popUpEl.classList.add('active')
+      overlay.classList.add('active')
+    });
 
     return partyCard;
   });

@@ -29,5 +29,32 @@
       <button>Add Party</button>
     </form>
     <ul id="parties"></ul>
+    <!-- This pop-Up will show up when the Edit Party button is clicked -->
+    <div class="popUp">
+      <div class="popUpHeader">
+        <div class="Title">Update Party</div>
+        <div>Party ID: 
+          <output class="partyID"></output>
+        </div>        
+        <button id="closeButton">&times;</button>
+      </div>
+      <form id="updParty">
+        <label>Party Name
+          <input type="text" name="name" placeholder="Name">
+        </label><br>
+        <label>Description
+          <input type="text" name="description" placeholder="Description">
+        </label><br>
+        <label>Date-Time
+          <input type="datetime-local" name="date" placeholder="Date" />
+        </label><br>
+        <label>Location
+          <input type="text" name="location" placeholder="Location" />
+        </label><br>
+        <button>Save</button>
+      </form>
+    </div>
+    <!-- This Overlay will show up when the Edit Party button is clicked -->
+    <div id="overlay"></div>
   </body>
 </html>
