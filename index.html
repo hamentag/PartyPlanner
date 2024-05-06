@@ -8,24 +8,13 @@
     <script defer src="index.js"></script>
   </head>
   <body>
+   <div id="container">
     <h1>Party Planner</h1>
     <form id="addParty">
-      <label>
-        Party Name
-        <input type="text" name="title" placeholder="Party Name" />
-      </label>
-      <label>
-        Description
-        <input type="text" name="description" placeholder="Description" />
-      </label>
-      <label>
-        Date
-        <input type="datetime-local" name="date" placeholder="Date" />
-      </label>
-      <label>
-        Location
-        <input type="text" name="location" placeholder="Location" />
-      </label>
+      <input type="text" name="title" placeholder="Name">
+      <input type="text" name="description" placeholder="Description" />
+      <input type="datetime-local" name="date" placeholder="Date" />
+      <input type="text" name="location" placeholder="Location" />
       <button>Add Party</button>
     </form>
     <ul id="parties"></ul>
@@ -45,7 +34,7 @@
         <label>Description
           <input type="text" name="description" placeholder="Description">
         </label><br>
-        <label>Date-Time
+        <label>Date-Time 
           <input type="datetime-local" name="date" placeholder="Date" />
         </label><br>
         <label>Location
@@ -56,5 +45,6 @@
     </div>
     <!-- This Overlay will show up when the Edit Party button is clicked -->
     <div id="overlay"></div>
+   </div>
   </body>
 </html>

@@ -1,76 +1,139 @@
+body{
+  background-color: rgba(191, 191, 191, 0.427);
+}
+h1, h2{
+  margin: 5px;
+}
+h1{
+  text-align: center;
+}
+
+#container{
+  max-width: 900px;
+  margin: 0 auto;
+}
 #parties {
-    display: flex;
-    flex-flow: row wrap;
-    list-style: none;
-    padding: 0;
-  }
-  
-  .party {
-    flex: 1 1 300px;
-    max-height: 200px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  #updParty{
-  margin: 1rem;
-  }
-  .popUp {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: 200ms ease-in-out;
-    border: 1px solid black;
-    border-radius: 10px;
-    z-index: 10;
-    background-color: white;
-    width: 600px;
-    max-width: 80%;
-  }
-  
-  .popUp.active {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  
-  .popUpHeader {
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-  }
-  
-  .popUpHeader .title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  .popUpHeader .close-button {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  #overlay {
+  list-style: none;
+  padding: 0;
+}
+.party-content{
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+.party-content button{
+  background-color: rgba(137, 189, 222, 0.589);
+  border-radius: 5px;
+  padding: 3px;
+  border: 1.5px solid rgba(86, 86, 86, 0.788);
+}
+.party-content button:hover{
+  color: white;
+  background-color: rgba(9, 89, 139, 0.589);
+  border: 1.5px solid rgb(73, 73, 73);
+}
+.control-btns{
+  min-width: 100px;
+  padding: 5px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.party {
+  background-color: white;
+  height: max-content;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#updParty{
+margin: 1rem;
+}
+
+#addParty{ 
+  background-color: rgba(112, 166, 227, 0.562);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 340px;
+  margin: 0 auto;
+  padding: 10px;
+}
+#addParty input{
+  padding: 5px;
+  border-radius: 5px;
+  border: 1.5px solid rgb(204, 204, 204);
+}
+#addParty button{
+  background-color: rgba(147, 233, 147, 0.756);
+  padding: 5px;
+  border-radius: 5px;
+  border: 1.5px solid rgba(73, 157, 140, 0.646);
+} 
+#addParty button:hover{
+  background-color: rgba(20, 112, 20, 0.9);
+  border: 1.5px solid rgb(172, 172, 172);
+  color: white;
+} 
+
+
+
+.popUp {
   position: fixed;
-  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .5);
-  pointer-events: none;
-  }
-  
-  #overlay.active {
-  opacity: 1;
-  pointer-events: all;
-  }
-  
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 600px;
+  max-width: 80%;
+}
+
+.popUp.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popUpHeader {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.popUpHeader .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.popUpHeader .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+#overlay {
+position: fixed;
+opacity: 0;
+transition: 200ms ease-in-out;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(0, 0, 0, .5);
+pointer-events: none;
+}
+
+#overlay.active {
+opacity: 1;
+pointer-events: all;
+}

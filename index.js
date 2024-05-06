@@ -1,6 +1,5 @@
 
-const COHORT = "2308-ACC-PT-WEB-PT-A";
-const API_URL = `https://fsa-crud-2aa9294fe819.herokuapp.com/api/${COHORT}/events`;
+const API_URL = 'https://fsa-crud-2aa9294fe819.herokuapp.com/api/2308-ACC-PT-WEB-PT-A/events';
 
 // Initial state
 const state = {
@@ -56,6 +55,10 @@ async function getParties() {
 async function addParty(event) {
     event.preventDefault();
     try {
+        console.log({ name : addPartyForm.title.value, 
+          description : addPartyForm.description.value, 
+          date: new Date(addPartyForm.date.value).toISOString(), 
+          location: addPartyForm.location.value})
         const response = await fetch(API_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -68,7 +71,7 @@ async function addParty(event) {
         if (json.error) {
           throw new Error(json.message);
         }
-
+        addPartyForm.reset();
         render();
       } catch (error) {
         console.error(error);
@@ -162,23 +165,31 @@ function renderParties() {
   const partyCards = state.parties.map((party) => {
     const partyCard = document.createElement("li");
     partyCard.classList.add("party");
-    partyCard.innerHTML = `
-      <h2>${party.name}</h2>
-      <p>${party.description}</p>
-      <p>${party.date}</p>
-      <p>${party.location}</p>
+
+    const partyTitle = document.createElement("h2");
+    partyTitle.textContent=`${party.name}`
+
+    const partyInfo = document.createElement("div");
+    partyInfo.innerHTML = `
+      <div class="party-info">
+        <div>${party.description}</div>
+        <div>${party.date}</div>
+        <div>${party.location}</div>
+      </div>
     `;
 
+    // Add control butttons element
+    const controlBtns = document.createElement("div");
+    controlBtns.classList.add('control-btns');
+  
     // Add the deleteButton feature
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete Party";
-    partyCard.append(deleteButton);
     deleteButton.addEventListener("click", () => deleteParty(party.id));
 
     // Add the editButton feature
     const editButton = document.createElement("button");
     editButton.textContent = "Edit Party";
-    partyCard.append(editButton);
         // Add event listener so that the partyIdEl value is updated and pop-Up and overlay 
         // are shown when this button is clicked
     editButton.addEventListener("click", () => {
@@ -186,6 +197,15 @@ function renderParties() {
       popUpEl.classList.add('active')
       overlay.classList.add('active')
     });
+
+    controlBtns.append(editButton, deleteButton);
+
+    const partyContent = document.createElement("div");
+    partyContent.classList.add('party-content');
+
+    partyContent.append(partyInfo, controlBtns);
+
+    partyCard.append(partyTitle, partyContent);
 
     return partyCard;
   });
