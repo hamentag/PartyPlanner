@@ -44,14 +44,35 @@ h1{
   height: max-content;
   margin: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid hsl(0, 0%, 80%);
   border-radius: 5px;
 }
 
 #updParty{
-margin: 1rem;
+padding: 10px 20px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+width:75%;
+margin: 5px auto;
 }
-
+#updParty button{
+  background-color: rgba(152, 152, 231, 0.509);
+  border-radius: 5px;
+  padding: 5px;
+  border: 1.5px solid rgba(192, 192, 192, 0.511);
+}
+#updParty button:hover{
+  background-color: rgba(24, 24, 138, 0.826);
+  border: 1.5px solid rgba(115, 115, 115, 0.511);
+  color: white;
+}
+#updParty input{
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1.5px solid rgba(155, 155, 155, 0.662);
+}
 #addParty{ 
   background-color: rgba(112, 166, 227, 0.562);
   border-radius: 5px;
@@ -91,8 +112,7 @@ margin: 1rem;
   border-radius: 10px;
   z-index: 10;
   background-color: white;
-  width: 600px;
-  max-width: 80%;
+  width: 450px;
 }
 
 .popUp.active {
@@ -112,13 +132,19 @@ margin: 1rem;
   font-weight: bold;
 }
 
-.popUpHeader .close-button {
+.popUpHeader #closeButton {
+  background-color: rgba(216, 113, 113, 0.285);
   cursor: pointer;
   border: none;
+  border-radius: 5px;
   outline: none;
-  background: none;
   font-size: 1.25rem;
   font-weight: bold;
+}
+ 
+.popUpHeader #closeButton:hover {
+  background-color: rgba(138, 12, 12, 0.621);
+  color: white;
 }
 
 #overlay {

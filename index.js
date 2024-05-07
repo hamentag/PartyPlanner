@@ -55,10 +55,6 @@ async function getParties() {
 async function addParty(event) {
     event.preventDefault();
     try {
-        console.log({ name : addPartyForm.title.value, 
-          description : addPartyForm.description.value, 
-          date: new Date(addPartyForm.date.value).toISOString(), 
-          location: addPartyForm.location.value})
         const response = await fetch(API_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -150,7 +146,7 @@ async function deleteParty(id) {
 
     render();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
