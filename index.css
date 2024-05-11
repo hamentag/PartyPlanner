@@ -1,14 +1,20 @@
-body{
+body {
   background-color: rgba(191, 191, 191, 0.427);
 }
-h1, h2{
+h1,
+h2 {
   margin: 5px;
 }
-h1{
+h1 {
   text-align: center;
 }
 
-#container{
+svg {
+  width: 20px;
+  height: 20px;
+}
+
+#container {
   max-width: 900px;
   margin: 0 auto;
 }
@@ -16,23 +22,23 @@ h1{
   list-style: none;
   padding: 0;
 }
-.party-content{
+.party-content {
   display: flex;
   justify-content: space-between;
   gap: 30px;
 }
-.party-content button{
+.party-content button {
   background-color: rgba(137, 189, 222, 0.589);
   border-radius: 5px;
   padding: 3px;
   border: 1.5px solid rgba(86, 86, 86, 0.788);
 }
-.party-content button:hover{
+.party-content button:hover {
   color: white;
   background-color: rgba(9, 89, 139, 0.589);
   border: 1.5px solid rgb(73, 73, 73);
 }
-.control-btns{
+.control-btns {
   min-width: 100px;
   padding: 5px 20px;
   display: flex;
@@ -48,33 +54,33 @@ h1{
   border-radius: 5px;
 }
 
-#updParty{
-padding: 10px 20px;
-display: flex;
-flex-direction: column;
-gap: 10px;
-width:75%;
-margin: 5px auto;
+#updParty {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 75%;
+  margin: 5px auto;
 }
-#updParty button{
+#updParty button {
   background-color: rgba(152, 152, 231, 0.509);
   border-radius: 5px;
   padding: 5px;
   border: 1.5px solid rgba(192, 192, 192, 0.511);
 }
-#updParty button:hover{
+#updParty button:hover {
   background-color: rgba(24, 24, 138, 0.826);
   border: 1.5px solid rgba(115, 115, 115, 0.511);
   color: white;
 }
-#updParty input{
+#updParty input {
   background-color: white;
   border-radius: 5px;
   padding: 5px;
   border: 1.5px solid rgba(155, 155, 155, 0.662);
 }
-#addParty{ 
-  background-color: rgba(112, 166, 227, 0.562);
+#addParty {
+  background-color: rgba(180, 180, 180, 0.35);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -83,24 +89,22 @@ margin: 5px auto;
   margin: 0 auto;
   padding: 10px;
 }
-#addParty input{
+#addParty input {
   padding: 5px;
   border-radius: 5px;
   border: 1.5px solid rgb(204, 204, 204);
 }
-#addParty button{
+#addParty button {
   background-color: rgba(147, 233, 147, 0.756);
   padding: 5px;
   border-radius: 5px;
   border: 1.5px solid rgba(73, 157, 140, 0.646);
-} 
-#addParty button:hover{
+}
+#addParty button:hover {
   background-color: rgba(20, 112, 20, 0.9);
   border: 1.5px solid rgb(172, 172, 172);
   color: white;
-} 
-
-
+}
 
 .popUp {
   position: fixed;
@@ -141,25 +145,25 @@ margin: 5px auto;
   font-size: 1.25rem;
   font-weight: bold;
 }
- 
+
 .popUpHeader #closeButton:hover {
   background-color: rgba(138, 12, 12, 0.621);
   color: white;
 }
 
 #overlay {
-position: fixed;
-opacity: 0;
-transition: 200ms ease-in-out;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: rgba(0, 0, 0, .5);
-pointer-events: none;
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
 }
 
 #overlay.active {
-opacity: 1;
-pointer-events: all;
+  opacity: 1;
+  pointer-events: all;
 }
